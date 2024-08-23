@@ -25,5 +25,5 @@ Fastq files in the directory "./1_fastq_files" are then analyzed, following this
 
 %%%
 
-Any inquiries, send me an email : tony.robinet@mnhn.fr
+Any inquiries? Send me an email ! tony.robinet@mnhn.fr
 
