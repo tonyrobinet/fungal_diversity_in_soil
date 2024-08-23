@@ -60,10 +60,22 @@ test202408_18S_2reads@tax_table[,6] <- gsub("g__", "", test202408_18S_2reads@tax
 
 
 test202408_18S_2reads <- test202408_18S_2reads %>% subset_taxa(Kingdom!="Unassigned")
+test202408_18S_2reads@tax_table[,2] %>% as.factor() %>% levels()
+test202408_18S_2reads %>% subset_taxa(Phylum=="Ascomycota" | Phylum=="Basidiomycota" | Phylum=="Blastocladiomycota" | Phylum=="Chytridiomycota" |
+                                        Phylum=="Cryptomycota" | Phylum=="Hyphochytriomycetes" | Phylum=="Hyphochytriomycetes" |
+                                        Phylum=="Labyrinthulomycetes" | Phylum=="Mucoromycota" | Phylum=="Myxogastria" | Phylum=="Peronosporomycetes")
+
+test202408_18S_2reads@tax_table[,2] %>% as.factor() %>% levels()
+
+write.csv(test202408_18S_2reads@otu_table, "~/sync/github/fungal_diversity_in_soil/2024_Aug/18S/test202408_18S_2reads.csv")
+write.csv(test202408_18S_2reads@tax_table, "~/sync/github/fungal_diversity_in_soil/2024_Aug/18S/taxa_test202408_18S_2reads.csv")
+
+
 
 ## Compute relative abundances
 test202408_18S_2reads_comp <- microbiome::transform(test202408_18S_2reads, "compositional")
 
+subset_species(test202408_18S_2reads)
 
 ####################### Fungal composition
 library(ggplot2)

@@ -58,8 +58,13 @@ test202408_ITS_2reads@tax_table[,6] <- gsub("g__", "", test202408_ITS_2reads@tax
 test202408_ITS_2reads@tax_table[,7] <- gsub(" s__", "", test202408_ITS_2reads@tax_table[,7], fixed = TRUE)
 test202408_ITS_2reads@tax_table[,7] <- gsub("s__", "", test202408_ITS_2reads@tax_table[,7], fixed = TRUE)
 
+test202408_ITS_2reads %>% subset_taxa(Kingdom=="Unassigned") # 139 non-fungal OTUs
+test202408_ITS_2reads <- test202408_ITS_2reads %>% subset_taxa(Kingdom!="Unassigned") # 491 fungal OTUs
+test202408_ITS_2reads@tax_table[,2] %>% as.factor() %>% levels()
 
-test202408_ITS_2reads <- test202408_ITS_2reads %>% subset_taxa(Kingdom!="Unassigned")
+
+write.csv(test202408_ITS_2reads@otu_table, "~/sync/github/fungal_diversity_in_soil/2024_Aug/ITS/test202408_ITS_2reads.csv")
+write.csv(test202408_ITS_2reads@tax_table, "~/sync/github/fungal_diversity_in_soil/2024_Aug/ITS/taxa_test202408_ITS_2reads.csv")
 
 ## Compute relative abundances
 test202408_ITS_2reads_comp <- microbiome::transform(test202408_ITS_2reads, "compositional")
@@ -73,23 +78,24 @@ library(upstartr)
 library(ggpubr)
 theme_set(theme_classic())
 
-test202408_ITS_2reads_comp_phy <- tax_glom(test202408_ITS_2reads_comp, taxrank = "Phylum") # 10 phyla
-test202408_ITS_2reads_comp_cla <- tax_glom(test202408_ITS_2reads_comp, taxrank = "Class") # 29 classes
-test202408_ITS_2reads_comp_fam <- tax_glom(test202408_ITS_2reads_comp, taxrank = "Family") # 142 familles
 
-test202408_ITS_2reads_comp_fam_without_rares <- aggregate_rare(test202408_ITS_2reads_comp_fam, level = "Family", detection = 0.05, prevalence = 0.01) # 6 familles + others
-test202408_ITS_2reads_comp_cla_without_rares <- aggregate_rare(test202408_ITS_2reads_comp_cla, level = "Class", detection = 0.05, prevalence = 0.01) # 5 classes + others
-test202408_ITS_2reads_comp_phy_without_rares <- aggregate_rare(test202408_ITS_2reads_comp_phy, level = "Phylum", detection = 0.05, prevalence = 0.01) # 3 phyla + others
-
-test202408_ITS_2reads_comp_cla_without_rares@tax_table
+test202408_ITS_2reads_cla <- tax_glom(test202408_ITS_2reads, taxrank = "Class") # 29 classes
+test202408_ITS_2reads_fam <- tax_glom(test202408_ITS_2reads, taxrank = "Family") # 142 familles
+test202408_ITS_2reads_cla_comp <- microbiome::transform(test202408_ITS_2reads_cla, "compositional")
+test202408_ITS_2reads_fam_comp <- microbiome::transform(test202408_ITS_2reads_fam, "compositional")
 
 
-colourCount = test202408_ITS_2reads_comp_cla_without_rares@tax_table[,2] %>% as.factor() %>% levels %>% length()
+test202408_ITS_2reads_fam_without_rares <- aggregate_rare(test202408_ITS_2reads_fam_without_rares_comp, level = "Family", detection = 0.05, prevalence = 0.01) # 6 familles + others
+test202408_ITS_2reads_cla_without_rares <- aggregate_rare(test202408_ITS_2reads_cla_comp, level = "Class", detection = 0.05, prevalence = 0.01) # 5 classes + others
+
+
+
+colourCount = test202408_ITS_2reads_cla_without_rares@tax_table[,2] %>% as.factor() %>% levels %>% length()
 getPalette = colorRampPalette(brewer.pal(colourCount[1], "Paired"))
 
 
 
-plot_composition(test202408_ITS_2reads_comp_cla_without_rares) +
+plot_composition(test202408_ITS_2reads_cla_without_rares) +
   scale_fill_manual(values = getPalette(colourCount[1])) + 
   guides(fill = guide_legend(nrow = 1)) +
   scale_y_percent() +
