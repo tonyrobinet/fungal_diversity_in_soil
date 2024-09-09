@@ -1,5 +1,5 @@
-fungal_diversity_in_soil
-________________________
+FungiSol: fungal_diversity_in_soil
+__________________________________
 
 Workflow for genetic analysis of fungi in soil samples
 
