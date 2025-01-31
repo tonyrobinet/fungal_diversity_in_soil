@@ -1,6 +1,25 @@
 FungiSol: fungal_diversity_in_soil
 __________________________________
 
+Dans le test 2024_Aug, nous avons essayé deux marqueurs nucléaires, un long (SSU : 18S, autour de 1800bp) et un court (les deux régions ITS, autour de 600bp). Les blancs d’extraction ont été amplifiés et séquencés, ils étaient parfaits (avec les petits contaminants habituels), donc aucune contamination notable des échantillons durant la manip labo. Ils sont dans les fichiers bruts mais enlevés des fichiers de résultats.
+
+Les séquences uniques (ASV) ont été regroupées en OTU à 97% de similitude. On peut aussi effectuer un regroupement à 99% pour ITS (non présenté ici, mais facilement calculable), voire à 100% si on travaille sur les lignées.
+
+Les taxons 18S ont été assignés par rapport à la base de références SILVA 138 SSU NR99. Les taxons ITS à la base UNITE 04.04.2024. L’assignation d'un taxon est donnée si elle représente au moins 50% de toutes les assignations connues de la séquence dans la base de références (min bootstrap=0.5), on peut aussi régler ce paramètre à 80% ou sur une autre valeur. En dessous de la valeur de bootstrap, l’assignation est notée NA pour le rang taxonomique en question.
+
+Une fois les singletons (1 seul read par échantillon) et les non-assignés enlevés (NA au rang Kingdom), le marqueur 18S détecte 593 OTUs sur les 3 échantillons, dont 151 OTUs fongiques et assimilés fongiques (Ascomycota, Basidiomycota, Blastocladiomycota, Chytridiomycota, Cryptomycota, Hyphochytriomycetes, Labyrinthulomycetes, Mucoromycota, Myxogastria, Peronosporomycetes). Le reste étant des protistes et invertébrés du sol.
+
+Le marqueur ITS détecte 491 OTUs fongiques, mais uniquement dans les champignons « vrais » (classés phylogénétiquement dans le règne des FUNGI (Ascomycota, Basidiomycota, Chytridiomycota, Fungi_Incertae_sedis, Glomeromycota, Mortierellomycota (=anciens Zygomycota), Mucoromycota, Neocallimastigomycota, Rozellomycota et Sanchytriomycota). Il y avait aussi 139 OTUs non fongiques, mais je ne les ai pas assignées.
+
+Sur l'ITS, l'échantillon 1D est dominé par les Eurotiomycètes (Ascomycètes), le EP05 par les Dothideomycètes et les Sordariomycètes (Ascomycètes tous les deux), le EP68 par les Mortierellomycètes (Mucoromycètes ou Mortierellomycètes selon les auteurs) et les Sordariomycètes (Ascomycètes).
+
+
+
+![tests_juin2024_diversite_ITS](https://github.com/user-attachments/assets/87145385-b9c2-43df-b863-d2867f677bdb)
+
+
+%%%
+
 Workflow for genetic analysis of fungi in soil samples
 
 %%%
@@ -25,5 +44,5 @@ Fastq files in the directory "./1_fastq_files" are then analyzed, following this
 
 %%%
 
-Any inquiries? Send me an email ! tony.robinet@mnhn.fr
+Any inquiries? Send an email at tony.robinet@mnhn.fr
 
