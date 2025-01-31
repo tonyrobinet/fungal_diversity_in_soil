@@ -14,7 +14,7 @@ Le marqueur ITS détecte 491 OTUs fongiques, mais uniquement dans les champignon
 Sur l'ITS, l'échantillon 1D est dominé par les Eurotiomycètes (Ascomycètes), le EP05 par les Dothideomycètes et les Sordariomycètes (Ascomycètes tous les deux), le EP68 par les Mortierellomycètes (Mucoromycètes ou Mortierellomycètes selon les auteurs) et les Sordariomycètes (Ascomycètes).
 
 
-<img width="747" alt="tests_juin2024_diversite_ITS" src="https://github.com/user-attachments/assets/87145385-b9c2-43df-b863-d2867f677bdb)">
+<img width="747" alt="tests_juin2024_diversite_ITS" src="https://github.com/user-attachments/assets/87145385-b9c2-43df-b863-d2867f677bdb">
 
 
 %%%
